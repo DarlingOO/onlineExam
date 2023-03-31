@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  </head>
+  <body>
+    name:<input type="text" th:value="|我是${name}|" value="dididi"><br>
+    age: <a>[[${age}]]</a>
+    <hr>
+    <a th:utext="${btext}"></a>
+    <hr>
+    <div th:if="${age>=18}" style="color: aqua">颜色</div>
+    <div th:unless="${age>=18}" style="color: blueviolet">颜色</div>
+    <hr>
+    <div th:each="i:${list}">
+        <div>[[${i}]]</div>
+    </div>
+    <hr>
+    <div th:include="com::coms" style="color: coral"></div>
+    <hr>
+    <div th:replace="com::coms" style="color: coral"></div>
+    <hr>
+    <div th:insert="com::coms" style="color: coral"></div>
+    <hr>
+    session.name: <input th:value="${session.name}"><br>
+    session.sex: <input th:value="${session.sex}">
+    <hr>
+    当前时间:<div th:text="${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}"></div>
+    <hr>
+    更改后的姓名: <input th:value="${#strings.replace(name,'z','m')}"><br>
+    <hr>
+    <th:block th:each="i:${#numbers.sequence(1,10)}">
+<!--      <div>[[${i}]]</div>-->
+    </th:block>
+    <hr>
+    <a href="/test1" th:href="@{/test1(name=${name},age=${age})}">test1</a>
+    <hr>
+  </body>
+</html>
