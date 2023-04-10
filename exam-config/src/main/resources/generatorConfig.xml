@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 引入连接数据库信息 -->
+    <properties resource="mysql.properties"/>
+
+    <context id="myContext" defaultModelType="flat" targetRuntime="MyBatis3">
+        <!-- 用来配置生成的注释。默认是生成注释的，并且会生成时间戳 -->
+        <commentGenerator>
+            <!-- 是否不生成注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否不生成时间戳 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 连接数据库信息 -->
+        <jdbcConnection driverClass="${mysql.driver}" connectionURL="${mysql.url}" userId="${mysql.username}" password="${mysql.password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- java与jdbc数据转换 -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+
+
+        <!-- 生成java实体类配置 -->
+        <javaModelGenerator targetPackage="com.vivi.domain" targetProject="exam-domain/src/main/java">
+            <!-- 是否让 schema 作为包的后缀，默认为false -->
+             <property name="enableSubPackages" value="false"/>
+            <!-- 在实体类生成的set方法中去空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapper.xml配置 -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="exam-config/src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- 生成dao接口配置(mapper接口类) -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.vivi.dao" targetProject="exam-dao/src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table tableName="t_dictionary" domainObjectName="Dictionary" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+        <table tableName="t_exam" domainObjectName="Exam" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+        <table tableName="t_teacher" domainObjectName="Teacher" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+        <table tableName="t_student" domainObjectName="Student" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"></table>
+        <table tableName="t_template" domainObjectName="Template" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false">
+            <columnOverride column="single_choice_question" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="multiple_choice_question" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="tf_question" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="completion" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="comprehensive_question" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+        </table>
+        <table tableName="t_question" domainObjectName="Question" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false">
+            <columnOverride column="subject" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="options" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="answer" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+        </table>
+        <table tableName="t_exam_student" domainObjectName="StudentExam" enableCountByExample="false" enableSelectByExample="false" enableUpdateByExample="false" enableDeleteByExample="false">
+            <columnOverride column="question1" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="question2" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="question3" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="question4" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="question5" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="review4" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+            <columnOverride column="review5" jdbcType="VARCHAR" javaType="java.lang.String"></columnOverride>
+        </table>
+    </context>
+</generatorConfiguration>

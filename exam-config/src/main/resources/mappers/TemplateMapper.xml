@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vivi.dao.TemplateMapper">
+  <resultMap id="BaseResultMap" type="com.vivi.domain.Template">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="single_choice_question" jdbcType="VARCHAR" property="singleChoiceQuestion" />
+    <result column="multiple_choice_question" jdbcType="VARCHAR" property="multipleChoiceQuestion" />
+    <result column="tf_question" jdbcType="VARCHAR" property="tfQuestion" />
+    <result column="completion" jdbcType="VARCHAR" property="completion" />
+    <result column="comprehensive_question" jdbcType="VARCHAR" property="comprehensiveQuestion" />
+    <result column="total_score" jdbcType="INTEGER" property="totalScore" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="tid" jdbcType="BIGINT" property="tid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="yl1" jdbcType="VARCHAR" property="yl1" />
+    <result column="yl2" jdbcType="VARCHAR" property="yl2" />
+    <result column="yl3" jdbcType="VARCHAR" property="yl3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, single_choice_question, multiple_choice_question, tf_question, completion, 
+    comprehensive_question, total_score, status, tid, create_time, update_time, yl1, 
+    yl2, yl3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.vivi.domain.Template">
+    insert into t_template (id, name, type, 
+      single_choice_question, multiple_choice_question, 
+      tf_question, completion, comprehensive_question, 
+      total_score, status, tid, 
+      create_time, update_time, yl1, 
+      yl2, yl3)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{singleChoiceQuestion,jdbcType=VARCHAR}, #{multipleChoiceQuestion,jdbcType=VARCHAR}, 
+      #{tfQuestion,jdbcType=VARCHAR}, #{completion,jdbcType=VARCHAR}, #{comprehensiveQuestion,jdbcType=VARCHAR}, 
+      #{totalScore,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{tid,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{yl1,jdbcType=VARCHAR}, 
+      #{yl2,jdbcType=VARCHAR}, #{yl3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vivi.domain.Template">
+    insert into t_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="singleChoiceQuestion != null">
+        single_choice_question,
+      </if>
+      <if test="multipleChoiceQuestion != null">
+        multiple_choice_question,
+      </if>
+      <if test="tfQuestion != null">
+        tf_question,
+      </if>
+      <if test="completion != null">
+        completion,
+      </if>
+      <if test="comprehensiveQuestion != null">
+        comprehensive_question,
+      </if>
+      <if test="totalScore != null">
+        total_score,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="yl1 != null">
+        yl1,
+      </if>
+      <if test="yl2 != null">
+        yl2,
+      </if>
+      <if test="yl3 != null">
+        yl3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="singleChoiceQuestion != null">
+        #{singleChoiceQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="multipleChoiceQuestion != null">
+        #{multipleChoiceQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="tfQuestion != null">
+        #{tfQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="completion != null">
+        #{completion,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensiveQuestion != null">
+        #{comprehensiveQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yl1 != null">
+        #{yl1,jdbcType=VARCHAR},
+      </if>
+      <if test="yl2 != null">
+        #{yl2,jdbcType=VARCHAR},
+      </if>
+      <if test="yl3 != null">
+        #{yl3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vivi.domain.Template">
+    update t_template
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="singleChoiceQuestion != null">
+        single_choice_question = #{singleChoiceQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="multipleChoiceQuestion != null">
+        multiple_choice_question = #{multipleChoiceQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="tfQuestion != null">
+        tf_question = #{tfQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="completion != null">
+        completion = #{completion,jdbcType=VARCHAR},
+      </if>
+      <if test="comprehensiveQuestion != null">
+        comprehensive_question = #{comprehensiveQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        tid = #{tid,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yl1 != null">
+        yl1 = #{yl1,jdbcType=VARCHAR},
+      </if>
+      <if test="yl2 != null">
+        yl2 = #{yl2,jdbcType=VARCHAR},
+      </if>
+      <if test="yl3 != null">
+        yl3 = #{yl3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vivi.domain.Template">
+    update t_template
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      single_choice_question = #{singleChoiceQuestion,jdbcType=VARCHAR},
+      multiple_choice_question = #{multipleChoiceQuestion,jdbcType=VARCHAR},
+      tf_question = #{tfQuestion,jdbcType=VARCHAR},
+      completion = #{completion,jdbcType=VARCHAR},
+      comprehensive_question = #{comprehensiveQuestion,jdbcType=VARCHAR},
+      total_score = #{totalScore,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      tid = #{tid,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      yl1 = #{yl1,jdbcType=VARCHAR},
+      yl2 = #{yl2,jdbcType=VARCHAR},
+      yl3 = #{yl3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

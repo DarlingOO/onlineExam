@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vivi.dao.StudentExamMapper">
+  <resultMap id="BaseResultMap" type="com.vivi.domain.StudentExam">
+    <id column="exam_id" jdbcType="BIGINT" property="examId" />
+    <id column="student_id" jdbcType="BIGINT" property="studentId" />
+    <result column="exam_group" jdbcType="VARCHAR" property="examGroup" />
+    <result column="question1" jdbcType="VARCHAR" property="question1" />
+    <result column="question2" jdbcType="VARCHAR" property="question2" />
+    <result column="question3" jdbcType="VARCHAR" property="question3" />
+    <result column="question4" jdbcType="VARCHAR" property="question4" />
+    <result column="question5" jdbcType="VARCHAR" property="question5" />
+    <result column="review4" jdbcType="VARCHAR" property="review4" />
+    <result column="review5" jdbcType="VARCHAR" property="review5" />
+    <result column="total_score" jdbcType="INTEGER" property="totalScore" />
+    <result column="paper_path" jdbcType="VARCHAR" property="paperPath" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="yl1" jdbcType="VARCHAR" property="yl1" />
+    <result column="yl2" jdbcType="VARCHAR" property="yl2" />
+    <result column="yl3" jdbcType="VARCHAR" property="yl3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    exam_id, student_id, exam_group, question1, question2, question3, question4, question5, 
+    review4, review5, total_score, paper_path, status, create_time, update_time, yl1, 
+    yl2, yl3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_exam_student
+    where exam_id = #{examId,jdbcType=BIGINT}
+      and student_id = #{studentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from t_exam_student
+    where exam_id = #{examId,jdbcType=BIGINT}
+      and student_id = #{studentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.vivi.domain.StudentExam">
+    insert into t_exam_student (exam_id, student_id, exam_group, 
+      question1, question2, question3, 
+      question4, question5, review4, 
+      review5, total_score, paper_path, 
+      status, create_time, update_time, 
+      yl1, yl2, yl3)
+    values (#{examId,jdbcType=BIGINT}, #{studentId,jdbcType=BIGINT}, #{examGroup,jdbcType=VARCHAR}, 
+      #{question1,jdbcType=VARCHAR}, #{question2,jdbcType=VARCHAR}, #{question3,jdbcType=VARCHAR}, 
+      #{question4,jdbcType=VARCHAR}, #{question5,jdbcType=VARCHAR}, #{review4,jdbcType=VARCHAR}, 
+      #{review5,jdbcType=VARCHAR}, #{totalScore,jdbcType=INTEGER}, #{paperPath,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{yl1,jdbcType=VARCHAR}, #{yl2,jdbcType=VARCHAR}, #{yl3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.vivi.domain.StudentExam">
+    insert into t_exam_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="examId != null">
+        exam_id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="examGroup != null">
+        exam_group,
+      </if>
+      <if test="question1 != null">
+        question1,
+      </if>
+      <if test="question2 != null">
+        question2,
+      </if>
+      <if test="question3 != null">
+        question3,
+      </if>
+      <if test="question4 != null">
+        question4,
+      </if>
+      <if test="question5 != null">
+        question5,
+      </if>
+      <if test="review4 != null">
+        review4,
+      </if>
+      <if test="review5 != null">
+        review5,
+      </if>
+      <if test="totalScore != null">
+        total_score,
+      </if>
+      <if test="paperPath != null">
+        paper_path,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="yl1 != null">
+        yl1,
+      </if>
+      <if test="yl2 != null">
+        yl2,
+      </if>
+      <if test="yl3 != null">
+        yl3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="examId != null">
+        #{examId,jdbcType=BIGINT},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=BIGINT},
+      </if>
+      <if test="examGroup != null">
+        #{examGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="question1 != null">
+        #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null">
+        #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="question3 != null">
+        #{question3,jdbcType=VARCHAR},
+      </if>
+      <if test="question4 != null">
+        #{question4,jdbcType=VARCHAR},
+      </if>
+      <if test="question5 != null">
+        #{question5,jdbcType=VARCHAR},
+      </if>
+      <if test="review4 != null">
+        #{review4,jdbcType=VARCHAR},
+      </if>
+      <if test="review5 != null">
+        #{review5,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="paperPath != null">
+        #{paperPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yl1 != null">
+        #{yl1,jdbcType=VARCHAR},
+      </if>
+      <if test="yl2 != null">
+        #{yl2,jdbcType=VARCHAR},
+      </if>
+      <if test="yl3 != null">
+        #{yl3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.vivi.domain.StudentExam">
+    update t_exam_student
+    <set>
+      <if test="examGroup != null">
+        exam_group = #{examGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="question1 != null">
+        question1 = #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null">
+        question2 = #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="question3 != null">
+        question3 = #{question3,jdbcType=VARCHAR},
+      </if>
+      <if test="question4 != null">
+        question4 = #{question4,jdbcType=VARCHAR},
+      </if>
+      <if test="question5 != null">
+        question5 = #{question5,jdbcType=VARCHAR},
+      </if>
+      <if test="review4 != null">
+        review4 = #{review4,jdbcType=VARCHAR},
+      </if>
+      <if test="review5 != null">
+        review5 = #{review5,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="paperPath != null">
+        paper_path = #{paperPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yl1 != null">
+        yl1 = #{yl1,jdbcType=VARCHAR},
+      </if>
+      <if test="yl2 != null">
+        yl2 = #{yl2,jdbcType=VARCHAR},
+      </if>
+      <if test="yl3 != null">
+        yl3 = #{yl3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where exam_id = #{examId,jdbcType=BIGINT}
+      and student_id = #{studentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.vivi.domain.StudentExam">
+    update t_exam_student
+    set exam_group = #{examGroup,jdbcType=VARCHAR},
+      question1 = #{question1,jdbcType=VARCHAR},
+      question2 = #{question2,jdbcType=VARCHAR},
+      question3 = #{question3,jdbcType=VARCHAR},
+      question4 = #{question4,jdbcType=VARCHAR},
+      question5 = #{question5,jdbcType=VARCHAR},
+      review4 = #{review4,jdbcType=VARCHAR},
+      review5 = #{review5,jdbcType=VARCHAR},
+      total_score = #{totalScore,jdbcType=INTEGER},
+      paper_path = #{paperPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      yl1 = #{yl1,jdbcType=VARCHAR},
+      yl2 = #{yl2,jdbcType=VARCHAR},
+      yl3 = #{yl3,jdbcType=VARCHAR}
+    where exam_id = #{examId,jdbcType=BIGINT}
+      and student_id = #{studentId,jdbcType=BIGINT}
+  </update>
+</mapper>

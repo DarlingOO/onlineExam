@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+">
+    <!-- 开启注解包扫描 -->
+    <context:component-scan base-package="com.vivi.comController"></context:component-scan>
+
+    <!-- 开启mvc注解编程 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!-- 配置thymeleaf -->
+    <!-- 配置处理模板方式 -->
+    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+        <property name="characterEncoding" value="utf-8"></property>
+        <property name="prefix" value="/WEB-INF/view"></property>
+        <property name="suffix" value=".html"></property>
+        <property name="templateMode" value="HTML"></property>
+        <property name="cacheable" value="false"></property>
+    </bean>
+    <!-- 声明模板引擎 -->
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"></property>
+    </bean>
+    <!-- 为spring配置thymeleaf视图解析器 -->
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="characterEncoding" value="utf-8"></property>
+        <property name="templateEngine" ref="templateEngine"></property>
+        <property name="order" value="1"></property>
+    </bean>
+
+    <!-- 处理静态资源 -->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+    <!-- 配置为文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="5000000"></property>
+        <property name="maxUploadSizePerFile" value="1000000"></property>
+    </bean>
+    <!-- 配置国际化文件资源 -->
+    <bean class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="basename" value="message"></property>
+        <!--设置“useCodeAsDefaultMessage”，默认为false，这样当Spring在ResourceBundle中找不到messageKey的话，就抛出NoSuchMessageException，
+            把它设置为True，则找不到不会抛出异常，而是使用messageKey作为返回值。
+        -->
+        <property name="useCodeAsDefaultMessage" value="true"></property>
+    </bean>
+
+    <!-- 基于session手动修改国际化 -->
+    <!-- 配置国际化拦截器 -->
+    <mvc:interceptors>
+        <bean id="i18nInterceptors" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <!-- paramNames默认值:locale --></bean>
+    </mvc:interceptors>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <!-- 设置默认携带参数英文 -->
+        <property name="defaultLocale" value="en_US"></property>
+    </bean>
+
+</beans>
